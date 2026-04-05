@@ -1,0 +1,29 @@
+/* border-color, background-color, label, image, and progress taken from
+https://github.com/basecamp/omarchy/blob/32592e2e285b5c9af6d38724be319c4fbef6e221/themes/tokyo-night/swayosd.css*/
+
+window {
+    border-radius: 0;
+    opacity: 0.97;
+    border: 2px solid #33ccff;
+
+    background-color: #1a1b26;
+}
+
+label {
+    font-family: "0xProtoNerdFontMono";
+    font-size: 12pt;
+
+    color: #a9b1d6;
+}
+
+image {
+    color: #a9b1d6;
+}
+
+progressbar {
+    border-radius: 0;
+}
+
+progress {
+    background-color: #a9b1d6;
+}

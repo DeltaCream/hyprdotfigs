@@ -1,0 +1,6 @@
+/* Taken from: https://github.com/basecamp/omarchy/blob/32592e2e285b5c9af6d38724be319c4fbef6e221/themes/tokyo-night/swayosd.css*/
+@define-color background-color #1a1b26;
+@define-color border-color #33ccff;
+@define-color label #a9b1d6;
+@define-color image #a9b1d6;
+@define-color progress #a9b1d6;
