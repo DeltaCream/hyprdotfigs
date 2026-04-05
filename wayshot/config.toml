@@ -4,6 +4,10 @@
 output = "eDP-1"
 # should contain cursor?
 cursor = false
+# freeze screen when selecting region (--geometry) or point (--color)? false = live selection (like --no-freeze)
+freeze = true
+# delay in milliseconds before taking the screenshot; omit or leave unset for no delay
+# delay = 0
 # should copy screenshot to clipborad?
 clipboard = true
 # should write screenshot as file in filesystem?
@@ -13,10 +17,12 @@ stdout = false
 # max logging level
 # possible values: info, trace, debug, warn, error
 log_level = "info"
+# should show desktop notifications?
+notifications = false
 
 [file]
 # screenshots directory (not a file!)
-path = "$HOME/Pictures/Wayshot Screenshots/"
+path = "$HOME/Pictures/Wayshot Screenshots"
 # screenshot file name format
 # refer to chrono formatting rules: https://docs.rs/chrono/latest/chrono/format/strftime/index.html
 name_format = "wayshot-%Y_%m_%d-%H_%M_%S"
