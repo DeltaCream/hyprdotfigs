@@ -1,4 +1,4 @@
-# dotfigs
+# hyprdotfigs
 
 This repository uses symlinks to connect default locations of configuration files (ranging from .conf to .toml files) to the location of the repository. This allows for easy updates and synchronization across multiple devices.
 
