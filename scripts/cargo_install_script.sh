@@ -64,3 +64,5 @@ cargo install espanso # cross-platform text expander
 
 # Applications
 cargo install alacritty
+cargo install weathr # terminal weather app with ascii animation
+cargo install wallust # wallpaper color theme manager

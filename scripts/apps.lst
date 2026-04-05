@@ -37,33 +37,34 @@ qt5-graphicaleffects                                   # for sddm theme effects
 # --------------------------------------------------- // Window Manager
 hyprland                                               # wlroots-based wayland compositor
 dunst                                                  # notification daemon
-# rofi                                                   # application launcher
+# rofi                                                 # application launcher
 walker                                                 # application launcher
 elephant                                               # backend for walker
 waybar                                                 # system bar
 eww                                                    # widget framework that can be used to make a system bar
 ironbar                                                # customizable system bar
 ashell                                                 # simple system bar you can use out of the box
-# swww                                                   # wallpaper
+# swww                                                 # wallpaper
 awww                                                   # wallpaper (updated from swww)
 hyprpaper                                              # wallpaper
 waypaper                                               # wallpaper manager (frontend for awww and/or hyprpaper)
 hyprlock                                               # lock screen
-# wlogout                                                # logout menu
-wleave                                                # logout menu
+# wlogout                                              # logout menu
+wleave                                                 # logout menu
 grim                                                   # screenshot tool
 hyprpicker                                             # color picker
 slurp                                                  # region select for screenshot/screenshare
 hyprshot                                               # screenshot tool that uses grim and slurp
 wayshot                                                # alternative screenshot tool from hyprshot
 satty                                                  # Modern Screenshot Annotation
-# cliphist                                               # clipboard manager
-# wl-clip-persist                                        # Keep Wayland clipboard even after programs close (avoids crashes)
+# cliphist                                             # clipboard manager
+# wl-clip-persist                                      # Keep Wayland clipboard even after programs close (avoids crashes)
 clipvault                                              # clipboard manager built in Rust (better than cliphist)
 hyprsunset                                             # blue light filter
 sunsetr                                                # blue light filter automatically during sunrise and sunset, uses hyprsunset
 hyprlux                                                # blue light filter, alternative to sunsetr
 hyprshutdown                                           # shutdown tool for hyprland
+wallust                                                # wallpaper color theme manager
 
 # --------------------------------------------------- // Dependencies
 polkit-gnome                                           # authentication agent
@@ -125,6 +126,9 @@ mpv
 spotify
 trilium
 webcord
+anki                                                   # a smart spaced repetition flashcard program
+openrgb                                                # rgb lighting control
+opentoonz                                              # 2D animation software, used by Studio Ghibli
 
 # --------------------------------------------------- // Music
 cava                                                   # audio visualizer
@@ -137,33 +141,33 @@ starship|fish                                          # customizable shell prom
 fastfetch                                              # system information fetch tool
 
 # --------------------------------------------------- // zsh
-# oh-my-zsh-git|zsh                                      # Optional plugin manager for zsh
-# pokemon-colorscripts-git|zsh                           # display pokemon sprites (optional)
-# pokego-bin|zsh                                         # display pokemon sprites in terminal (written GO)
-# zsh-theme-powerlevel10k-git|zsh                        # Powerlevel10k is a theme for Zsh. It emphasizes speed, flexibility and out-of-the-box experience.
-bat|zsh                                                  # enhanced version of cat
-eza|zsh                                                  # file lister for zsh
-duf|zsh                                                  # prettier version of df for zsh
+# oh-my-zsh-git|zsh                                    # Optional plugin manager for zsh
+# pokemon-colorscripts-git|zsh                         # display pokemon sprites (optional)
+# pokego-bin|zsh                                       # display pokemon sprites in terminal (written GO)
+# zsh-theme-powerlevel10k-git|zsh                      # Powerlevel10k is a theme for Zsh. It emphasizes speed, flexibility and out-of-the-box experience.
+bat|zsh                                                # enhanced version of cat
+eza|zsh                                                # file lister for zsh
+duf|zsh                                                # prettier version of df for zsh
 # --------------------------------------------------- // fish
-bat|fish                                                 # enhanced version of cat
-eza|fish                                                 # file lister
-duf|fish                                                 # prettier version of df
-fd                                                       # enhanced version of find
-ripgrep                                                  # blazingly fast alternative to grep
-zoxide                                                   # better cd command for the terminal
-skim                                                     # fuzzy finder for the terminal
+bat|fish                                               # enhanced version of cat
+eza|fish                                               # file lister
+duf|fish                                               # prettier version of df
+fd                                                     # enhanced version of find
+ripgrep                                                # blazingly fast alternative to grep
+zoxide                                                 # better cd command for the terminal
+skim                                                   # fuzzy finder for the terminal
 
 # --------------------------------------------------- // HyDE
 hypridle                                               # idle daemon
 
 # --------------------------------------------------- // Editor
-# vscodium                                              # Full oss text editor
-# vscodium-marketplace|vscodium                         # VSCodium marketplace
-# code-marketplace|code                                 # Code-Oss marketplace
-# visual-studio-code-bin                                # MS  text editor
+# vscodium                                             # Full oss text editor
+# vscodium-marketplace|vscodium                        # VSCodium marketplace
+# code-marketplace|code                                # Code-Oss marketplace
+# visual-studio-code-bin                               # MS text editor
 
 # --------------------------------------------------- // OSD
-swayosd-git                                             #A GTK based on screen display for keyboard shortcuts like caps-lock and volume
+swayosd-git                                            # A GTK based on screen display for keyboard shortcuts like caps-lock and volume
 
 # --------------------------------------------------- // Gaming
 goverlay
@@ -172,10 +176,20 @@ lutris
 wine
 winetricks
 protontricks
+mindustry                                              # An open-source automation tower defense RTS game
 
 # --------------------------------------------------- // Utilities
 meld                                                   # file comparison and diffing tool, somehow I just had this
 showmethekey
+shadowsocks-rust                                       # fast tunnel proxy that helps you bypass firewalls
+
+# --------------------------------------------------- // Terminal/Command Line
+zellij                                                 # terminal multiplexer
+uv                                                     # an extremely fast Python package installer and resolver written in Rust
+dust                                                   # a more intuitive version of du in rust
+yazi                                                   # terminal file manager built in Rust
+bottom                                                 # btm, system monitoring tool
+git-delta                                              # git diffing tool
 
 # --------------------------------------------------- // Stuff downloaded from CachyOS Package Installer
 # Audio

@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
-# Building from the ground up for Fedora
+# Building from the ground up for CachyOS, with some conveniences by downloading via pacman and paru
+# Create some folders that might be needed
+mkdir -p ~/.local/bin
 
 # Dependencies for sherlock
 paru -S git gtk4 gtk4-layer-shell dbus sqlite librsvg gdk-pixbuf2
@@ -107,7 +109,7 @@ mv target/release/sherlock-dictionary ~/.config/sherlock/scripts/
 # }
 
 # (Optional) Remove the build directory
-rm -rf /tmp/sherlock-dict
+sudo rm -rf /tmp/sherlock-dict
 
 # Installing wayshot as a Rust-native alternative to hyprshot
 
@@ -115,28 +117,40 @@ rm -rf /tmp/sherlock-dict
 paru -S scdoc rustup make
 
 # Install wayshot
-cd ~/Documents/sourcebuild
+cd /tmp
 git clone https://github.com/waycrate/wayshot && cd wayshot
 make setup
 make
 sudo make install
-# rm -rf /tmp/wayshot
+sudo rm -rf /tmp/wayshot
+
+# Before you use wayshot, create the directory which you will save screenshots in
+# For my case, it's ~/Pictures/Wayshot Screenshots
+mkdir -p ~/Pictures/Wayshot\ Screenshots
 
 # Go to temp directory
 cd /tmp
 
 # Clone the repository
-git clone https://github.com/skxxtz/sherlock-clipboard.git
-cd sherlock-clipboard
+# git clone https://github.com/Skxxtz/sherlock-clipboard.git
+# cd sherlock-clipboard
 
 # Build the binary
-cargo build --release
+# cargo build --release
 
 # Install the binary
-sudo cp target/release/sherlock-clp /usr/local/bin/
+# sudo cp target/release/sherlock-clp /usr/local/bin/
 
 # (Optional) Remove the build directory
-rm -rf /tmp/sherlock-clipboard
+# sudo rm -rf /tmp/sherlock-clipboard
+
+# My personal alternative to sherlock-clipboard, sherlock-clipvault, which uses clipvault
+cd /tmp
+git clone https://github.com/DeltaCream/sherlock-clipvault.git
+cd sherlock-clipvault
+cargo build --release
+sudo cp target/release/sherlock-clipvault /usr/local/bin/
+sudo rm -rf /tmp/sherlock-clipvault
 
 # ironbar installation
 # build requirements for ironbar
@@ -160,15 +174,18 @@ cd ironbar
 cargo build --release # you can add or remove --locked flag
 # change path to wherever you want to install
 install target/release/ironbar ~/.local/bin/ironbar # or /usr/local/bin/
-rm -rf /tmp/ironbar
+sudo rm -rf /tmp/ironbar
 
-# Install meson, a build system used by SwayOSD
+# Install meson, a build system used by SwayOSD (if compiling from source)
 sudo pacman -S meson
 
 # Dependencies for SwayOSD (if compiling from source)
 sudo pacman -S sassc
 
 # SwayOSD (OSD for Hyprland)
+# Note that SwayOSD is present in CachyOS' repos
+sudo pacman -S SwayOSD
+# Or build from source
 cd /tmp
 git clone --recursive https://github.com/ErikReider/SwayOSD.git
 cd SwayOSD
@@ -176,7 +193,7 @@ cd SwayOSD
 meson setup build --buildtype release
 meson compile -C build
 meson install -C build
-rm -rf /tmp/SwayOSD
+sudo rm -rf /tmp/SwayOSD
 
 # Installing an updated fork of rsmatrix, a cmatrix Rust clone
 cd /tmp
@@ -184,7 +201,7 @@ git clone https://github.com/DeltaCream/rsmatrix.git
 cd rsmatrix
 cargo build --release
 sudo cp target/release/rsmatrix /usr/local/bin
-rm -rf /tmp/rsmatrix
+sudo rm -rf /tmp/rsmatrix
 
 # curl script to install unimatrix, a Unicode variant based on cmatrix
 sudo curl -L https://raw.githubusercontent.com/will8211/unimatrix/master/unimatrix.py -o /usr/local/bin/unimatrix
@@ -197,17 +214,18 @@ sudo pacman -S cmatrix
 sudo pacman -S gtk4-layer-shell gtk4 librsvg libadwaita
 
 # wleave (Wayland logout prompt utility based from wlogout, written in Rust)
+cd /tmp
 git clone https://github.com/AMNatty/wleave.git
 cd wleave
 cargo build --release
 sudo cp target/release/wleave /usr/bin
-
 # Optionally copy wleave.fish
 sudo cp completions/wleave.fish /usr/share/fish/vendor_completions.d/wleave.fish
+sudo rm -rf /tmp/wleave
 
 # Optionally copy wleave icons to /usr/share
 sudo mkdir -p /usr/share/wleave/icons # create the wleave/icons directory on /usr/share just in case
-sudo cp icons/* /usr/share/wleave/icons # or more specifically icons/*.svg
+sudo cp wleave/icons/* /usr/share/wleave/icons # or more specifically icons/*.svg
 
 # awww (Wayland Wallpaper Manager, formerly named swww)
 git clone https://codeberg.org/LGFae/awww.git
@@ -351,3 +369,77 @@ sudo pacman -S skim # or cargo install skim
 
 # Specifically for CachyOS, use sudo tee because writing to /usr/share requires root privileges
 sk --shell fish | sudo tee /usr/share/fish/completions/sk.fish
+
+# Install zoxide
+sudo pacman -S zoxide
+# Then add to ~/.config/fish/config.fish
+echo 'zoxide init fish | source' >> ~/.config/fish/config.fish
+
+# The entire set you would need for Hyprland
+sudo pacman -S hyprland
+# Must-haves: https://wiki.hypr.land/Useful-Utilities/Must-have/
+# Install notification daemon here, e.g. dunst, mako, fnott and swaync
+# Update: chosen notification daemon is end-rs
+sudo pacman -S pipewire wireplumber
+sudo pacman -S xdg-desktop-portal-hyprland
+sudo pacman -S hyprpolkitagent
+sudo pacman -S qt5-wayland qt6-wayland
+# Install fonts here
+# Status Bars: https://wiki.hypr.land/Useful-Utilities/Status-Bars/
+# e.g. waybar, ashell, ironbar, astal or ags, eww, quickshell
+# Wallpapers: https://wiki.hypr.land/Useful-Utilities/Wallpapers/
+# e.g. hyprpaper, mpvpaper, awww, waypaper, wallrizz
+# App launcher: sherlock
+sudo pacman -S hyprpicker
+paru -S clipvault
+sudo pacman -S dolphin # or yazi
+sudo pacman -S udiskie # for automatic disk mounting
+# Hyprland ecosystem
+sudo pacman -S  hyprpaper hypridle hyprlock hyprsunset hyprpwcenter
+paru -S hyprsysteminfo hyprshutdown # Only available in the AUR
+# Utilities
+paru -S sunsetr
+# For screenshot utility, either go wayshot or hyprshot
+
+# Install end-rs, probably the *only* notification daemon I know for Hyprland built in Rust
+# end-rs is inspiredfrom end, or Eww Notification Daemon, which was written in Haskell
+# Compile from source
+cd /tmp
+git clone https://github.com/Dr-42/end-rs
+cd end-rs
+cargo build --release
+sudo cp target/release/end-rs /usr/bin/
+sudo rm -rf /tmp/end-rs
+# Or just install from crates.io
+cargo install end-rs
+
+# After installation, create eww folder for end-rs configs if the folder has not been created yet
+mkdir -p ~/.config/eww
+# end-rs generate yuck # If you want to generate yuck file only
+# end-rs generate scss # If you want to generate scss file only
+end-rs generate all # Generates both yuck and scss files for end-rs
+
+# Install package dependencies for eww
+sudo pacman -S gtk-layer-shell
+
+# Install eww, the very widget system that end-rs is based on
+cd /tmp
+git clone https://github.com/elkowar/eww
+cd eww
+cargo build --release --no-default-features --features=wayland
+chmod +x target/release/eww
+# Put eww on ~/.local/bin to ensure compatibility with end-rs
+sudo cp target/release/eww ~/.local/bin
+sudo rm -rf /tmp/eww
+
+# Installing RustConn (a connection app for various remote connections)
+# dependencies
+paru -S vte4 # for vte-2.91-gtk4, required by the vte4-sys crate
+
+# From source
+cd /tmp
+git clone https://github.com/totoshko88/rustconn.git
+cd rustconn
+cargo build --release
+sudo cp target/release/rustconn /usr/bin
+sudo rm -rf /tmp/rustconn

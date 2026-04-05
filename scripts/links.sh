@@ -35,77 +35,77 @@ fi
 ROOT_DIR="$(cd "$(dirname "$SCRIPT_PATH")/.." && pwd -P)"
 
 # list of config files to link (basename only)
-FILES=(
-  hyprland.conf
-  hypridle.conf
-  hyprlock.conf
-  hyprpaper.conf
-  gamemode.sh
-)
+# FILES=(
+#   hyprland.conf
+#   hypridle.conf
+#   hyprlock.conf
+#   hyprpaper.conf
+#   gamemode.sh
+# )
 
 # ln -s "$ROOT_DIR/hypr/hyprland.conf" "$HOME/.config/hypr/hyprland.conf"
 # ln -s "$ROOT_DIR/hypr/hypridle.conf" "$HOME/.config/hypr/hypridle.conf"
 # ln -s "$ROOT_DIR/hypr/hyprlock.conf" "$HOME/.config/hypr/hyprlock.conf"
 # ln -s "$ROOT_DIR/hypr/hyprpaper.conf" "$HOME/.config/hypr/hyprpaper.conf"
 
-for f in "${FILES[@]}"; do
-  SRC="$ROOT_DIR/hypr/$f"
-  LINK="$HOME/.config/hypr/$f"
+# for f in "${FILES[@]}"; do
+#   SRC="$ROOT_DIR/hypr/$f"
+#   LINK="$HOME/.config/hypr/$f"
 
-  # ensure parent exists
-  mkdir -p "$(dirname "$LINK")"
+#   # ensure parent exists
+#   mkdir -p "$(dirname "$LINK")"
 
-  # if there's already a symlink there
-  if [ -L "$LINK" ]; then
-    if command -v realpath >/dev/null 2>&1; then
-      # resolve absolute canonical paths for reliable comparison
-      ABS_SRC="$(realpath -m "$SRC")"
-      # readlink may be relative; make it absolute relative to link's dir
-      LINK_TARGET="$(readlink "$LINK")"
-      ABS_LINK_TARGET="$(realpath -m "$(dirname "$LINK")/$LINK_TARGET")"
-      if [ "$ABS_LINK_TARGET" = "$ABS_SRC" ]; then
-        echo -e "${YELLOW}Skipping (correct symlink exists):${NC} $LINK -> $LINK_TARGET"
-        continue
-      else
-        echo -e "${YELLOW}Skipping (symlink exists but points to different target):${NC} $LINK -> $LINK_TARGET"
-        continue
-      fi
-    else
-      # fallback: compare the raw readlink text with SRC (less robust)
-      if [ "$(readlink "$LINK")" = "$SRC" ]; then
-        echo -e "${YELLOW}Skipping (correct symlink exists):${NC} $LINK -> $(readlink "$LINK")"
-        continue
-      else
-        echo -e "${YELLOW}Skipping (symlink exists but points elsewhere):${NC} $LINK -> $(readlink "$LINK")"
-        continue
-      fi
-    fi
-  fi
+#   # if there's already a symlink there
+#   if [ -L "$LINK" ]; then
+#     if command -v realpath >/dev/null 2>&1; then
+#       # resolve absolute canonical paths for reliable comparison
+#       ABS_SRC="$(realpath -m "$SRC")"
+#       # readlink may be relative; make it absolute relative to link's dir
+#       LINK_TARGET="$(readlink "$LINK")"
+#       ABS_LINK_TARGET="$(realpath -m "$(dirname "$LINK")/$LINK_TARGET")"
+#       if [ "$ABS_LINK_TARGET" = "$ABS_SRC" ]; then
+#         echo -e "${YELLOW}Skipping (correct symlink exists):${NC} $LINK -> $LINK_TARGET"
+#         continue
+#       else
+#         echo -e "${YELLOW}Skipping (symlink exists but points to different target):${NC} $LINK -> $LINK_TARGET"
+#         continue
+#       fi
+#     else
+#       # fallback: compare the raw readlink text with SRC (less robust)
+#       if [ "$(readlink "$LINK")" = "$SRC" ]; then
+#         echo -e "${YELLOW}Skipping (correct symlink exists):${NC} $LINK -> $(readlink "$LINK")"
+#         continue
+#       else
+#         echo -e "${YELLOW}Skipping (symlink exists but points elsewhere):${NC} $LINK -> $(readlink "$LINK")"
+#         continue
+#       fi
+#     fi
+#   fi
 
-  # if a non-symlink file or directory exists at LINK, skip (don't overwrite)
-  if [ -e "$LINK" ]; then
-    echo -e "${YELLOW}Skipping (path exists and is not a symlink):${NC} $LINK"
-    continue
-  fi
+#   # if a non-symlink file or directory exists at LINK, skip (don't overwrite)
+#   if [ -e "$LINK" ]; then
+#     echo -e "${YELLOW}Skipping (path exists and is not a symlink):${NC} $LINK"
+#     continue
+#   fi
 
-  # create the symlink (relative if possible)
-  if command -v realpath >/dev/null 2>&1 && realpath --help 2>&1 | grep -q -- '--relative-to'; then
-    ABS_SRC="$(realpath -m "$SRC")"
-    REL_SRC="$(realpath --relative-to="$(dirname "$LINK")" "$ABS_SRC")"
-    ln -s "$REL_SRC" "$LINK"
-  else
-    ln -s "$SRC" "$LINK"
-  fi
+#   # create the symlink (relative if possible)
+#   if command -v realpath >/dev/null 2>&1 && realpath --help 2>&1 | grep -q -- '--relative-to'; then
+#     ABS_SRC="$(realpath -m "$SRC")"
+#     REL_SRC="$(realpath --relative-to="$(dirname "$LINK")" "$ABS_SRC")"
+#     ln -s "$REL_SRC" "$LINK"
+#   else
+#     ln -s "$SRC" "$LINK"
+#   fi
 
-  echo -e "${GREEN}Created symlink:${NC} $LINK -> $(readlink "$LINK")"
-done
+#   echo -e "${GREEN}Created symlink:${NC} $LINK -> $(readlink "$LINK")"
+# done
 
 # ---------
 
-SRC="$ROOT_DIR/starship/starship.toml"
-LINK="$HOME/.config/starship.toml"
+# SRC="$ROOT_DIR/starship/starship.toml"
+# LINK="$HOME/.config/starship.toml"
 
-echo -e "${GREEN}Creating symlink for starship...${NC}"
+# echo -e "${GREEN}Creating symlink for starship...${NC}"
 
 # ln -s "$SRC" "$LINK"
 
@@ -115,9 +115,9 @@ echo -e "${GREEN}Creating symlink for starship...${NC}"
 # fi
 
 # Use this instead if you want to check specifically for a symlink
-if [ ! -L "$LINK" ]; then
-  ln -s "$SRC" "$LINK"
-fi
+# if [ ! -L "$LINK" ]; then
+#   ln -s "$SRC" "$LINK"
+# fi
 
 
 # ---------
@@ -148,13 +148,23 @@ fi
 
 # list of config folders to link (basename only)
 FOLDERS=(
-  waybar
-  hypr/hyprlock
-  alacritty
-  ashell
+  # waybar
+  # hypr/hyprlock
+  hypr
+  # alacritty
+  # ashell
   wleave
-  swayosd
-  walker
+  # swayosd
+  # walker
+  nvim
+  ironbar
+  sunsetr
+  zed
+  wayshot
+  eww
+  end-rs
+  wayle
+  zlaunch
 )
 
 for f in "${FOLDERS[@]}"; do
