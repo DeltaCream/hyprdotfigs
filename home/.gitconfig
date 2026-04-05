@@ -1,0 +1,20 @@
+[user]
+	email = <your email>
+	name = <your name>
+[core]
+	editor = nvim
+	pager = delta
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+[pull]
+	rebase = false
+[interactive]
+    diffFilter = delta --color-only
+[delta]
+    navigate = true # use n and N to move between diff sections
+    dark = true     # or light = true, or omit for auto-detection
+[merge]
+    conflictStyle = zdiff3
