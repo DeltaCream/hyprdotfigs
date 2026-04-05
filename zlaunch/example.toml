@@ -1,0 +1,16 @@
+theme = "one-dark"
+launcher_size = [800.0, 500.0]
+enable_backdrop = true
+enable_transparency = true
+hyprland_auto_blur = true
+
+default_modes = ["combined", "emojis", "clipboard"]
+combined_modules = ["calculator", "windows", "applications", "actions"]
+
+[fuzzy_match]
+show_best_match = true
+
+[[search_providers]]
+name = "GitHub"
+trigger = "!gh"
+url = "https://github.com/search?q={query}"
