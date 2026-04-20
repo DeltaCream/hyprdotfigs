@@ -67,7 +67,6 @@ hyprshutdown                                           # shutdown tool for hyprl
 wallust                                                # wallpaper color theme manager
 
 # --------------------------------------------------- // Dependencies
-polkit-gnome                                           # authentication agent
 hyprpolkitagent                                        # authentication agent for hyprland
 xdg-desktop-portal-hyprland                            # xdg desktop portal for hyprland
 xdg-desktop-portal-gtk                                 # file picker and dbus  integration
@@ -99,11 +98,11 @@ dolphin                                                # kde file manager
 ark                                                    # kde file archiver
 unzip                                                  # extracting zip files
 vim                                                    # terminal text editor
-# neovim                                               # vim based text editor
+neovim                                                 # vim based text editor
 code                                                   # ide text editor
 zed                                                    # also an ide text editor
 nwg-displays                                           # monitor management utility
-fzf                                                    # Command-line fuzzy finder
+# fzf                                                  # Command-line fuzzy finder
 obs-studio                                             # Open Broadcaster Software
 bitwarden                                              # Password Manager
 obsidian                                               # Markdown Note Manager
