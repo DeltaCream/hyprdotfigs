@@ -33,3 +33,6 @@ set --export PATH $BUN_INSTALL/bin $PATH
 
 # For sudoedit
 set -x SUDO_EDITOR nvim
+
+# For starship
+starship init fish | source
