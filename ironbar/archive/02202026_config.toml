@@ -1,0 +1,259 @@
+position = "top"
+height = 42
+# start = []
+# center = []
+# end = []
+
+[[start]]
+type = "workspaces"
+favorites = ["1", "2", "3"]
+
+[start.name_map]
+1 = "一"
+2 = "二"
+3 = "三"
+4 = "四"
+5 = "五"
+6 = "六"
+7 = "七"
+8 = "八"
+9 = "九"
+10 = "十"
+
+[[center]]
+type = "focused"
+show_icon = true
+show_title = true
+icon_size = 24
+truncate = "end"
+
+[[end]]
+type = "music"
+player_type = "mpris"  # or "mpd"
+format = "{title}"  # "{title} / {artist}"
+# host = localhost:6600
+# music_dir = "$HOME/Music"
+# truncate = "off" # "end"
+marquee = { enable = true, max_length = 30, scroll_speed = 0.25, pause_duration = 5000, separator = "    ", on_hover = "none" }
+marquee_popup_artist = { enable = true, max_length = 30, on_hover = "none" }
+marquee_popup_album = { enable = true, max_length = 30, on_hover = "none", scroll_speed = 0.25 }
+marquee_popup_title = { enable = true, max_length = 30, on_hover = "none" }
+show_status_icon = false
+cover_image_size = 128
+
+[end.icons]
+play = ""
+pause = ""
+prev = "󰒮"
+next = "󰒭"
+volume = "󰕾"
+track = "󰎈"
+album = "󰀥"
+artist = "󰠃"
+
+[[end]]
+type = "battery"
+format = "{percentage}%"
+show_if = "ls /sys/class/power_supply/ | grep --quiet '^BAT'"
+
+[end.thresholds]
+warning = 20
+critical = 5
+
+# [[end]]
+# type = "sys_info"
+# format = [
+#    # "{cpu_percent}% ",
+#    # "{memory_percent}% ",
+#    " {cpu_percent}% | {cpu_frequency} GHz | {temp_c@CPUTIN}°C",
+#    " {memory_used} / {memory_total} GB ({memory_available} | {memory_percent}%) | {swap_used} / {swap_total} GB ({swap_free} | {swap_percent}%)",
+#    "󰋊 {disk_used#T@/:.1} / {disk_total#T@/:.1} TB ({disk_percent@/}%) | {disk_read} / {disk_write} MB/s",
+#    "󰓢 {net_down@enp39s0} / {net_up@enp39s0} Mbps",
+#    "󰖡 {load_average_1} | {load_average_5} | {load_average_15}",
+#    "󰥔 {uptime}"
+# ]
+
+# [end.interval]
+# cpu = 1
+# disks = 300
+# memory = 30
+# networks = 3
+# temps = 5
+
+# [[end]]
+# type = "clipboard"
+# icon = "󰨸"
+# max_items = 5
+
+# [end.truncate]
+# mode = "end"
+# length = 50
+
+# [[end]]
+# type = "volume"
+# format = "{icon}  {percentage}%"
+# max_volume = 100
+# truncate = "middle"
+
+# [end.icons]
+# volume_high = "󰕾"
+# volume_medium = "󰖀"
+# volume_low = "󰕿"
+# muted = "󰝟"
+
+# [[end]]
+# type = "tray"
+# direction = "vertical"
+# on_click_left = "menu"
+# on_click_left_double = "default"
+
+# [[end]]
+# type = "script"
+# mode = "poll"
+# interval = 5000
+# cmd = "/home/cream/.config/ironbar/scripts/wttr"
+
+# [[end]]
+# type = "custom"
+# class = "weather"
+
+# [[end.bar]]
+# type = "button"
+# label = "Weather: #weather_cond | #weather_temp" # "#weather_current"
+# on_click = "popup:toggle"
+
+# [[end.popup]]
+# type = "box"
+# orientation = "vertical"
+
+# [[end.popup.widgets]]
+# type = "label"
+# name = "header"
+# label = "Forecast"
+
+# [[end.popup.widgets]]
+# type = "box"
+
+# [[end.popup.widgets.widgets]]
+# type = "box"
+# name = "dates"
+# orientation = "vertical"
+
+# [[end.popup.widgets.widgets.widgets]]
+# type = "label"
+# class = "weather-date"
+# label = "#weather_date_0"
+
+# [[end.popup.widgets.widgets.widgets]]
+# type = "label"
+# class = "weather-date"
+# label = "#weather_date_1"
+
+# [[end.popup.widgets.widgets.widgets]]
+# type = "label"
+# class = "weather-date"
+# label = "#weather_date_2"
+
+# [[end.popup.widgets.widgets]]
+# type = "box"
+# name = "temps"
+# orientation = "vertical"
+
+# [[end.popup.widgets.widgets.widgets]]
+# type = "box"
+
+# [[end.popup.widgets.widgets.widgets.widgets]]
+# type = "label"
+# class = "weather-high"
+# label = " #weather_high_0"
+
+# [[end.popup.widgets.widgets.widgets.widgets]]
+# type = "label"
+# class = "weather-avg"
+# label = " #weather_avg_0"
+
+# [[end.popup.widgets.widgets.widgets.widgets]]
+# type = "label"
+# class = "weather-low"
+# label = " #weather_low_0"
+
+# [[end.popup.widgets.widgets.widgets]]
+# type = "box"
+
+# [[end.popup.widgets.widgets.widgets.widgets]]
+# type = "label"
+# class = "weather-high"
+# label = " #weather_high_1"
+
+# [[end.popup.widgets.widgets.widgets.widgets]]
+# type = "label"
+# class = "weather-avg"
+# label = " #weather_avg_1"
+
+# [[end.popup.widgets.widgets.widgets.widgets]]
+# type = "label"
+# class = "weather-low"
+# label = " #weather_low_1"
+
+# [[end.popup.widgets.widgets.widgets]]
+# type = "box"
+
+# [[end.popup.widgets.widgets.widgets.widgets]]
+# type = "label"
+# class = "weather-high"
+# label = " #weather_high_2"
+
+# [[end.popup.widgets.widgets.widgets.widgets]]
+# type = "label"
+# class = "weather-avg"
+# label = " #weather_avg_2"
+
+# [[end.popup.widgets.widgets.widgets.widgets]]
+# type = "label"
+# class = "weather-low"
+# label = " #weather_low_2"
+
+[[end]]
+type = "clock"
+format = "%B %-d, %Y"
+format_popup = "%-I:%M:%S %p"
+
+[[end]]
+class = "power-menu"
+tooltip = '''Up: {{30000:uptime -p | cut -d ' ' -f2-}}'''
+type = "custom"
+
+[[end.bar]]
+label = ""
+name = "power-btn"
+on_click = "popup:toggle"
+type = "button"
+
+[[end.popup]]
+orientation = "vertical"
+type = "box"
+
+[[end.popup.widgets]]
+label = "Power menu"
+name = "header"
+type = "label"
+
+[[end.popup.widgets]]
+type = "box"
+
+[[end.popup.widgets.widgets]]
+class = "power-btn"
+label = '''<span font-size='40pt'></span>'''
+on_click = "!shutdown now"
+type = "button"
+
+[[end.popup.widgets.widgets]]
+class = "power-btn"
+label = '''<span font-size='40pt'></span>'''
+on_click = "!reboot"
+type = "button"
+
+[[end.popup.widgets]]
+label = '''Uptime: {{30000:uptime -p | cut -d ' ' -f2-}}'''
+name = "uptime"
+type = "label"

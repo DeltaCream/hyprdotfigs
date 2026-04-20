@@ -1,0 +1,101 @@
+:root {
+    --color-dark-primary: #1c1c1c;
+    --color-dark-secondary: #2d2d2d;
+    --color-white: #fff;
+    --color-active: #6699cc;
+    --color-urgent: #8f0a0a;
+
+    --margin-lg: 1em;
+    --margin-sm: 0.5em;
+}
+
+* {
+    border-radius: 0;
+    border: none;
+    box-shadow: none;
+    background-image: none;
+    /*font-family: monospace;*/
+}
+
+#bar,
+popover,
+popover contents,
+calendar {
+    background-color: var(--color-dark-primary);
+}
+
+box,
+button,
+label {
+    background-color: #0000;
+    color: var(--color-white);
+}
+
+button {
+    padding-left: var(--margin-sm);
+    padding-right: var(--margin-sm);
+}
+
+button:hover,
+button:active {
+    background-color: var(--color-dark-secondary);
+}
+
+#end > * + * {
+    margin-left: var(--margin-lg);
+}
+
+.sysinfo > * + * {
+    margin-left: var(--margin-sm);
+}
+
+.clock {
+    font-weight: bold;
+}
+
+.popup-clock .calendar-clock {
+    font-size: 2em;
+}
+
+.popup-clock .calendar .today {
+    background-color: var(--color-active);
+}
+
+.workspaces .item.visible {
+    box-shadow: inset 0 -1px var(--color-white);
+}
+
+.workspaces .item.focused {
+    box-shadow: inset 0 -1px var(--color-active);
+    background-color: var(--color-dark-secondary);
+}
+
+.workspaces .item.urgent {
+    background-color: var(--color-urgent);
+}
+
+.popup-weather #header {
+    font-size: 1.8em;
+    padding-bottom: 0.4em;
+    margin-bottom: 0.6em;
+    border-bottom: 1px solid @color-border;
+}
+
+.popup-weather .weather-date {
+    font-size: 1.5em;
+    padding-right: 1em;
+}
+
+.popup-weather .weather-avg {
+    margin-left: 0.5em;
+    margin-right: 0.5em;
+}
+
+/*
+ this is a hack to align the different font sizes on left/right
+ you may need to adjust for different fonts
+*/
+.popup-weather #temps label {
+    padding-top: 0.2em;
+    margin-bottom: 0.7em;
+}
