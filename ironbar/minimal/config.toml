@@ -15,8 +15,8 @@ show_if = "ls /sys/class/power_supply/ | grep --quiet '^BAT'"
 [[end]]
 type = "sys_info"
 format = [
-    "{cpu_percent}% ",
-    "{memory_percent}% ",
+  "{cpu_percent}% ",
+  "{memory_percent}% ",
 ]
 
 [end.interval]

@@ -6,10 +6,10 @@ type = "xdg_entry"
 label = "Accessories"
 icon = "accessories"
 categories = [
-    "Accessibility",
-    "Core",
-    "Legacy",
-    "Utility",
+  "Accessibility",
+  "Core",
+  "Legacy",
+  "Utility",
 ]
 
 [[start.center]]
@@ -41,9 +41,9 @@ type = "xdg_entry"
 label = "Multimedia"
 icon = "applications-multimedia"
 categories = [
-    "Audio",
-    "Video",
-    "AudioVideo",
+  "Audio",
+  "Video",
+  "AudioVideo",
 ]
 
 [[start.center]]
@@ -69,8 +69,8 @@ type = "xdg_entry"
 label = "System"
 icon = "applications-system"
 categories = [
-    "Emulator",
-    "System",
+  "Emulator",
+  "System",
 ]
 
 [[start.center]]
@@ -81,6 +81,6 @@ type = "xdg_entry"
 label = "Settings"
 icon = "preferences-system"
 categories = [
-    "Settings",
-    "Screensaver",
+  "Settings",
+  "Screensaver",
 ]
