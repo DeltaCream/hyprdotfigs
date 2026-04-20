@@ -17,6 +17,7 @@ cargo install eza # drop-in replacement for ls; a well-maintained fork of exa, w
 cargo install zoxide # a smarter cd command for your terminal
 cargo install dua # interactive disk use analyzer
 cargo install skim # fuzzy finder for Rust
+cargo install rust_tree # Rust implementation of tree for showing the file tree of a given directory
 
 # No Boilerplate's recommendations
 # https://www.youtube.com/watch?v=dFkGNe4oaKk

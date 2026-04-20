@@ -1033,6 +1033,7 @@ git clone --recursive https://github.com/Jas-SinghFSU/wayle
 cd wayle
 # cargo install --path crates/wayle-shell # pre-0.1.0
 cargo install --path wayle
+cargo install --path crates/wayle-settings # 0.2.0
 sudo rm -rf /tmp/wayle
 
 # Install bundled icons (automatic on first launch)
