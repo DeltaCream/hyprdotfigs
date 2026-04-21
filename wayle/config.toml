@@ -68,7 +68,7 @@ right = [
 [styling]
 scale = 1.00
 rounding = "sm"
-theme-provider = "wayle"
+theme-provider = "wallust"
 theming-monitor = ""
 matugen-scheme = "tonal-spot"
 matugen-contrast = 0.0
