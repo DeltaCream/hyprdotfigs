@@ -1,0 +1,463 @@
+  {
+    "name": "Clipboard",
+    "type": "clipboard",
+    "args": {
+      "max_entries": 100,
+      "show_thumbnails": true
+    }
+  }
+
+
+// #[derive(Clone, Debug, Serialize, Deserialize)]
+// pub struct ClipboardEntry {
+//     pub index: usize,
+//     pub content: EntryContent,
+//     pub timestamp: i64,
+// }
+
+// #[derive(Debug, Clone, Deserialize, Serialize)]
+// pub enum EntryContent {
+//     Text(String),
+//     Image {
+//         data: Vec<u8>,
+//         mime_type: String,
+//         thumbnail: Option<Vec<u8>>,
+//     },
+// }
+
+// impl ClipboardEntry {
+//     ///Get display text for the entry
+//     pub fn display_text(&self) -> String {
+//         match &self.content {
+//             EntryContent::Text(text) => {
+//                 // Truncate long text
+//                 let text = text.replace('\n', " ").replace('\r', "");
+//                 if text.len() > 100 {
+//                     format!("{}...", &text[..100])
+//                 } else {
+//                     text.clone()
+//                 }
+//             }
+//             EntryContent::Image { mime_type, .. } => format!("[Image: {}]", mime_type),
+//         }
+//     }
+
+//     ///Get subtitle (timestamp, type info)
+//     pub fn subtitle(&self) -> String {
+//         use chrono::{DateTime, Local, Utc};
+
+//         let dt = DateTime::<Utc>::from_timestamp(self.timestamp, 0).unwrap_or_default();
+//         let local: DateTime<Local> = dt.into();
+//         let time_str = local.format("%Y-%m-%d %H:%M:%S").to_string();
+
+//         // could also do time ago
+//         // let time_ago = Self::time_ago(self.timestamp);
+//         // then substitute time_str with time_ago
+
+//         match &self.content {
+//             EntryContent::Text(_) => format!("Text · {}", time_str),
+//             EntryContent::Image { mime_type, .. } => {
+//                 format!("{} · {}", mime_type, time_str)
+//             }
+//         }
+//     }
+
+//     /// Get human-readable time ago string
+//     fn time_ago(timestamp: i64) -> String {
+//         use std::time{SystemTime, UNIX_EPOCH};
+
+//         let now = SystemTime::now()
+//             .duration_since(UNIX_EPOCH)
+//             .unwrap()
+//             .as_secs() as i64;
+
+//         let diff = now - timestamp;
+
+//         match diff {
+//             0..=59 => "just now".to_string(),
+//             60..=3599 => format!("{} {} ago", diff / 60, if diff < 120 { "minute" } else { "minutes" }),
+//             3600..=86399 => format!("{} {} ago", diff / 3600, if diff < 7200 { "hour" } else { "hours" }),
+//             86400..=604799 => format!("{} {} ago", diff / 86400, if diff < 172800 { "day" } else { "days" }),
+//             _ => format!("{} {} ago", diff / 604800, if diff < 1209600 { "week" } else { "weeks" }),
+//         }
+//     }
+
+//     /// Check if entry matches search query
+//     pub fn matches(&self, query: &str) -> bool {
+//         if query.is_empty() {
+//             return true;
+//         }
+
+//         let query_lower = query.to_lowercase();
+
+//         match &self.content {
+//             EntryContent::Text(text) => {
+//                 text.to_lowercase().contains(&query_lower)
+//             }
+//             EntryContent::Image { mime_type, .. } => {
+//                 mime_type.to_lowercase().contains(&query_lower)
+//             }
+//         }
+//     }
+// }
+
+/// Global clipvault client instance
+/// Initialized once and reused across all clipboard operations
+// pub static CLIPVAULT_CLIENT: OnceLock<Option<ClipvaultClient>> = OnceLock::new();
+
+
+    /// Initialize the clipvault client (called during startup)
+    // pub fn init_client() {
+    //     tokio::spawn(async {
+    //         match ClipvaultClient::new() {
+    //             Ok(client) => {
+    //                 let _ = CLIPVAULT_CLIENT.set(Some(client));
+    //             }
+    //             Err(e) => {
+    //                 eprintln!("Failed to initialize clipvault client: {}", e);
+    //                 let _ = CLIPVAULT_CLIENT.set(None);
+    //             }
+    //         }
+    //     });
+    // }
+
+    // /// Get the global clipvault client
+    // pub fn get_client() -> Option<&'static ClipvaultClient> {
+    //     CLIPVAULT_CLIENT.get()?.as_ref()
+    // }
+
+    // fn get_database_path() -> Result<PathBuf, SherlockError> {
+    //     let data_dir = dirs::data_local_dir().ok_or_else(|| {
+    //         sherlock_error!(
+    //             SherlockErrorType::EnvVarNotFoundError("XDG_DATA_HOME".to_string()),
+    //             "Could not find local data directory"
+    //         )
+    //     })?;
+
+    //     Ok(data_dir.join("clipvault.db"))
+    // }
+
+    /// Restore a clipboard entry by ID
+    // pub fn restore_clipboard(id: i64) -> Result<(), SherlockError> {
+    //     let db_path = Self::get_database_path()?;
+    //     let conn = Connection::open(&db_path)
+    //         .map_err(|e| sherlock_error!(SherlockErrorType::SqlConnectionError(), e.to_string()))?;
+
+    //     // Get the entry from database
+    //     let mut stmt = conn
+    //         .prepare("SELECT content, mime_type FROM clipboard_history WHERE id = ?")
+    //         .map_err(|e| sherlock_error!(SherlockErrorType::SqlConnectionError(), e.to_string()))?;
+
+    //     let entry = stmt
+    //         .query_row([id], |row| {
+    //             let content: Vec<u8> = row.get(0)?;
+    //             let mime_type: String = row.get(1)?;
+    //             Ok((content, mime_type))
+    //         })
+    //         .map_err(|e| sherlock_error!(SherlockErrorType::SqlConnectionError(), e.to_string()))?;
+
+    //     // Restore to system clipboard
+    //     Self::set_clipboard(&entry.0, &entry.1)?;
+
+    //     sher_log!(format!(
+    //         "Restored clipboard entry {} ({} bytes)",
+    //         id,
+    //         entry.0.len()
+    //     ))?;
+
+    //     Ok(())
+    // }
+
+    fn set_clipboard(content: &[u8], mime_type: &str) -> Result<(), SherlockError> {
+        let mut child = Command::new("wl-copy")
+            .arg("--type")
+            .arg(mime_type)
+            .stdin(Stdio::piped())
+            .spawn()
+            .map_err(|e| {
+                sherlock_error!(
+                    SherlockErrorType::CommandExecutionError("wl-copy".to_string()),
+                    e.to_string()
+                )
+            })?;
+
+        if let Some(mut stdin) = child.stdin.take() {
+            stdin.write_all(content).map_err(|e| {
+                sherlock_error!(
+                    SherlockErrorType::FileWriteError(PathBuf::from("stdin")),
+                    e.to_string()
+                )
+            })?;
+        }
+
+        child.wait().map_err(|e| {
+            sherlock_error!(
+                SherlockErrorType::CommandExecutionError("wl-copy".to_string()),
+                e.to_string()
+            )
+        })?;
+
+        Ok(())
+    }
+
+
+/// Delete a clipboard entry by ID
+// pub fn delete_entry(id: i64) -> Result<(), SherlockError> {
+//     let db_path = Self::get_database_path()?;
+//     let conn = Connection::open(&db_path)
+//         .map_err(|e| sherlock_error!(SherlockErrorType::SqlConnectionError(), e.to_string()))?;
+
+//     conn.execute("DELETE FROM clipboard_history WHERE id = ?", [id])
+//         .map_err(|e| sherlock_error!(SherlockErrorType::SqlConnectionError(), e.to_string()))?;
+
+//     sher_log!(format!("Deleted clipboard entry {}", id))?;
+
+//     Ok(())
+// }
+
+// Restore to system clipboard
+// Self::set_clipboard(&entry.0, &entry.1)?;
+
+
+    // #[cfg(test)]
+// mod tests {
+//     use super::*;
+
+//     #[test]
+//     fn test_display_text_truncation() {
+//         let long_text = "a".repeat(150);
+//         let entry = ClipboardEntry {
+//             index: 0,
+//             content: EntryContent::Text(long_text),
+//             timestamp: 0,
+//         };
+
+//         let display = entry.display_text();
+//         assert!(display.len() <= 103); // 100 chars + "..."
+//         assert!(display.ends_with("..."));
+//     }
+
+//     #[test]
+//     fn test_display_text_newline_removal() {
+//         let entry = ClipboardEntry {
+//             index: 0,
+//             content: EntryContent::Text("line1\nline2\rline3".to_string()),
+//             timestamp: 0,
+//         };
+
+//         let display = entry.display_text();
+//         assert!(!display.contains('\n'));
+//         assert!(!display.contains('\r'));
+//     }
+
+//     #[test]
+//     fn test_matches_text() {
+//         let entry = ClipboardEntry {
+//             index: 0,
+//             content: EntryContent::Text("Hello World".to_string()),
+//             timestamp: 0,
+//         };
+
+//         assert!(entry.matches("hello"));
+//         assert!(entry.matches("WORLD"));
+//         assert!(entry.matches(""));
+//         assert!(!entry.matches("goodbye"));
+//     }
+// }
+
+impl ClipboardParser {
+    fn parse(
+        launcher: Arc<Launcher>,
+        db_path: PathBuf,
+        max_entries: usize,
+        show_images: bool,
+    ) -> Result<Vec<AppData>, SherlockError> {
+        use rusqlite::Connection;
+
+        let mut res: Vec<AppData> = Vec::new();
+
+        // Connect to clipvault database
+        let conn = Connection::open(&db_path)
+            .map_err(|e| sherlock_error!(SherlockErrorType::SqlConnectionError(), e.to_string()))?;
+
+        // Query to get recent clipboard entries
+        let query = if show_images {
+            format!(
+                "SELECT id, content, mime_type, timestamp
+                FROM clipboard_history
+                ORDER BY timestamp DESC
+                LIMIT {}",
+                max_entries
+            )
+        } else {
+            format!(
+                "SELECT id, content, mime_type, timestamp
+                FROM clipboard_history
+                WHERE mime_type LIKE 'text/%'
+                ORDER BY timestamp DESC
+                LIMIT {}",
+                max_entries
+            )
+        };
+
+        if let Ok(mut stmt) = conn.prepare(&query) {
+            let entry_iter = stmt.query_map([], |row| {
+                let id: i64 = row.get(0)?;
+                let content: Vec<u8> = row.get(1)?;
+                let mime_type: String = row.get(2)?;
+                let timestamp: i64 = row.get(3)?;
+
+                Ok((id, content, mime_type, timestamp))
+            });
+
+            if let Ok(rows) = entry_iter {
+                for (index, row) in rows.flatten().enumerate() {
+                    let (id, content, mime_type, timestamp) = row;
+
+                    // Create preview for the entry
+                    let (title, icon_name) = Self::create_preview(&content, &mime_type);
+
+                    // Format timestamp
+                    let time_str = Self::format_timestamp(timestamp);
+
+                    // Create subtitle with mime type and time
+                    let subtitle = format!("{} • {}", mime_type, time_str);
+
+                    let clipboard_entry = AppData {
+                        name: Some(SharedString::from(&title)),
+                        icon: resolve_icon_path(&icon_name),
+                        search_string: format!(
+                            // "{} {} {} {}",
+                            // title.to_lowercase(),
+                            // mime_type.to_lowercase(),
+                            // time_str.to_lowercase(),
+                            // id
+                            "{} {} {}",
+                            title.to_lowercase(),
+                            subtitle.to_lowercase(),
+                            id
+                        ),
+                        // Store the ID in exec field for retrieval
+                        exec: Some(format!("clipboard:{}", id)),
+                        desktop_file: None,
+                        priority: Some(
+                            launcher.priority as f32
+                                + (max_entries - index) as f32 / max_entries as f32,
+                        ),
+                        actions: Arc::new([]),
+                        vars: vec![],
+                        terminal: false,
+                    };
+
+                    res.push(clipboard_entry);
+                }
+            }
+        }
+
+        Ok(res)
+    }
+
+    fn create_preview(content: &[u8], mime_type: &str) -> (String, String) {
+        if mime_type.starts_with("text/") {
+            let text = String::from_utf8_lossy(content);
+            let preview = text
+                .lines()
+                .next()
+                .unwrap_or("")
+                .chars()
+                .take(100)
+                .collect::<String>();
+
+            let icon = if mime_type.contains("html") {
+                "text-html"
+            } else {
+                "edit-copy"
+            };
+
+            (preview, icon.to_string())
+        } else if mime_type.starts_with("image/") {
+            let icon = "image-x-generic";
+            (format!("📷 Image ({})", mime_type), icon.to_string())
+        } else {
+            let icon = "edit-copy";
+            (
+                format!("📎 {} ({} bytes)", mime_type, content.len()),
+                icon.to_string(),
+            )
+        }
+    }
+
+    fn format_timestamp(timestamp: i64) -> String {
+        use chrono::{DateTime, Local, Utc};
+
+        if let Some(datetime) = DateTime::from_timestamp(timestamp, 0) {
+            let local_time: DateTime<Local> = datetime.with_timezone(&Local);
+            let now = Local::now();
+
+            let duration = now.signed_duration_since(local_time);
+
+            if duration.num_seconds() < 60 {
+                "Just now".to_string()
+            } else if duration.num_minutes() < 60 {
+                format!("{}m ago", duration.num_minutes())
+            } else if duration.num_hours() < 24 {
+                format!("{}h ago", duration.num_hours())
+            } else if duration.num_days() < 7 {
+                format!("{}d ago", duration.num_days())
+            } else {
+                local_time.format("%b %d").to_string()
+            }
+        } else {
+            "Unknown".to_string()
+        }
+    }
+}
+
+
+// Stuff removed since sherlock-gpui
+Fallbacks (in order of priority of appearance):
+After App Launcher and before Web Search:
+  {
+    "name": "Kill Process",
+    "alias": "kill",
+    "type": "process",
+    "args": {},
+    "priority": 0
+  },
+After Web Search and before Clipboard
+{
+    "name": "Wikipedia Search",
+    "alias": "wiki",
+    "type": "bulk_text",
+    "on_return": "next",
+    "async": true,
+    "args": {
+      "icon": "wikipedia",
+      "exec": "~/.config/sherlock/scripts/sherlock-wiki",
+      "exec-args": "'{keyword}'"
+    },
+    "priority": 0
+  },
+  {
+    "name": "Dictionary Lookup",
+    "alias": "define",
+    "type": "bulk_text",
+    "async": true,
+    "args": {
+      "icon": "dictionary",
+      "exec": "~/.config/sherlock/scripts/sherlock-dictionary",
+      "exec-args": "{keyword}"
+    },
+    "priority": 0,
+    "shortcut": false
+  },
+After Emoji Picker, at the end of the fallbacks list:
+  {
+    "name": "Theme Picker",
+    "type": "theme_picker",
+    "args": {
+      "location": "~/.config/sherlock/themes/"
+    },
+    "priority": 4,
+    "home": "Home"
+  }

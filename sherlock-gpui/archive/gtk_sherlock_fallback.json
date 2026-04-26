@@ -1,0 +1,189 @@
+[
+  {
+    "name": "Weather",
+    "type": "weather",
+    "args": {
+      "location": "manila",
+      "update_interval": 60,
+      "icon_theme": "Sherlock",
+      "show_datetime": true
+    },
+    "actions": [
+      {
+        "name": "Show in Web",
+        "exec": "https://www.wttr.in/manila",
+        "icon": "sherlock-link",
+        "method": "web_launcher"
+      }
+    ],
+    "priority": 1,
+    "home": "OnlyHome",
+    "async": true,
+    "shortcut": false,
+    "spawn_focus": false
+  },
+  {
+    "name": "Spotify",
+    "type": "audio_sink",
+    "args": {},
+    "async": true,
+    "priority": 1,
+    "home": "OnlyHome",
+    "spawn_focus": false,
+    "binds": [
+      {
+        "bind": "Return",
+        "callback": "playpause",
+        "exit": false
+      },
+      {
+        "bind": "control+l",
+        "callback": "next",
+        "exit": false
+      },
+      {
+        "bind": "control+h",
+        "callback": "previous",
+        "exit": false
+      }
+    ],
+    "actions": [
+      {
+        "name": "Skip",
+        "icon": "media-seek-forward",
+        "method": "inner.next",
+        "exit": false
+      },
+      {
+        "name": "Previous",
+        "icon": "media-seek-backward",
+        "method": "inner.previous",
+        "exit": false
+      }
+    ]
+  },
+  {
+    "name": "Calculator",
+    "type": "calculation",
+    "args": {
+      "capabilities": ["calc.math", "calc.units"]
+    },
+    "priority": 1,
+    "on_return": "copy"
+  },
+  {
+    "name": "App Launcher",
+    "alias": "app",
+    "type": "app_launcher",
+    "args": {},
+    "priority": 3,
+    "home": "Home"
+  },
+  {
+    "name": "Kill Process",
+    "alias": "kill",
+    "type": "process",
+    "args": {},
+    "priority": 0
+  },
+  {
+    "name": "Web Search",
+    "display_name": "Google Search",
+    "tag_start": "{keyword}",
+    "alias": "gg",
+    "type": "web_launcher",
+    "args": {
+      "search_engine": "google",
+      "icon": "google"
+    },
+    "priority": 100
+  },
+  {
+    "name": "Wikipedia Search",
+    "alias": "wiki",
+    "type": "bulk_text",
+    "on_return": "next",
+    "async": true,
+    "args": {
+      "icon": "wikipedia",
+      "exec": "~/.config/sherlock/scripts/sherlock-wiki",
+      "exec-args": "'{keyword}'"
+    },
+    "priority": 0
+  },
+  {
+    "name": "Dictionary Lookup",
+    "alias": "define",
+    "type": "bulk_text",
+    "async": true,
+    "args": {
+      "icon": "dictionary",
+      "exec": "~/.config/sherlock/scripts/sherlock-dictionary",
+      "exec-args": "{keyword}"
+    },
+    "priority": 0,
+    "shortcut": false
+  },
+  {
+    "name": "Clipboard",
+    "type": "clipboard-execution",
+    "args": {
+      "capabilities": [
+        "url",
+        "colors.hex",
+        "colors.rgb",
+        "colors.hsl",
+        "calc.math",
+        "calc.lengths",
+        "calc.weights",
+        "calc.temperatures"
+      ]
+    },
+    "priority": 1,
+    "home": "Home"
+  },
+  {
+    "name": "Example Command",
+    "alias": "ex",
+    "type": "command",
+    "args": {
+      "commands": {
+        "command name": {
+          "icon": "icon-name",
+          "icon_class": "reactive",
+          "exec": "command to execute",
+          "search_string": "examplecommand",
+          "tag_start": "{keyword}",
+          "tag_end": "{keyword}"
+        },
+        "command2": {
+          "icon": "icon-name",
+          "exec": "command to execute",
+          "search_string": "examplecommand",
+          "tag_start": "{keyword}",
+          "tag_end": "{keyword}"
+        }
+      }
+    },
+    "priority": 5
+  },
+  {
+    "name": "Emoji Picker",
+    "type": "emoji_picker",
+    "args": {
+      "default_skin_tone": "Simpsons"
+    },
+    "priority": 4,
+    "home": "Search",
+    "alias": "emoji"
+  },
+  {
+    "name": "Theme Picker",
+    "type": "theme_picker",
+    "args": {
+      "location": "~/.config/sherlock/themes/"
+    },
+    "priority": 4,
+    "home": "Home"
+  }
+]
