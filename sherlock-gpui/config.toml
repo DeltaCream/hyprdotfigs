@@ -9,7 +9,7 @@ lengths = "meters"
 weights = "kg"
 volumes = "l"
 temperatures = "C"
-currency = "eur"
+currency = "php"
 
 [debug]
 try_suppress_errors = false
