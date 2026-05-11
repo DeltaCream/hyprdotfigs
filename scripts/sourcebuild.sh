@@ -800,7 +800,7 @@ sudo chmod a+rx /usr/local/bin/unimatrix
 cd /tmp
 git clone https://github.com/AMNatty/wleave.git
 cd wleave
-cargo build --release
+cargo build --release # or make
 sudo cp target/release/wleave /usr/bin
 # Optionally copy wleave.fish
 sudo cp completions/wleave.fish /usr/share/fish/vendor_completions.d/wleave.fish
@@ -808,7 +808,7 @@ sudo rm -rf /tmp/wleave
 
 # Optionally copy wleave icons to /usr/share
 sudo mkdir -p /usr/share/wleave/icons # create the wleave/icons directory on /usr/share just in case
-sudo cp wleave/icons/* /usr/share/wleave/icons # or more specifically icons/*.svg
+sudo cp icons/* /usr/share/wleave/icons # or more specifically icons/*.svg
 
 # awww (Wayland Wallpaper Manager, formerly named swww)
 git clone https://codeberg.org/LGFae/awww.git
@@ -1042,7 +1042,7 @@ wayle panel start
 
 # Install sherlock-gpui
 cd /tmp
-git clone https://github.com/skxxtz/sherlock-gpui.git
+git clone https://github.com/Skxxtz/sherlock-gpui.git
 cd sherlock-gpui
 
 # Build sherlock
