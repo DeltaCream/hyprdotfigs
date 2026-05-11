@@ -1,11 +1,16 @@
-# "$schema" = 'https://starship.rs/config-schema.json'
+# Get editor completions based on the config schema
+"$schema" = "https://starship.rs/config-schema.json"
+
+# Inserts a blank line between shell prompts
 add_newline = false
+
 format = """\
   󰣛 \
   $directory\
   $git_branch$git_commit$git_state $git_status\
   $character\n
 """
+
 right_format = """
 $singularity\
 $kubernetes\
@@ -74,8 +79,7 @@ $status\
 $os\
 $time"""
 
-continuation_prompt = '▶▶ '
-
+continuation_prompt = "▶▶ "
 
 # style_choices:
 # bold
@@ -91,7 +95,7 @@ continuation_prompt = '▶▶ '
 # <color>
 # none
 
-#NOTE: you can customize the symbols, e.g:
+# NOTE: you can customize the symbols, e.g:
 # [character]
 # success_symbol = "[  ]($bold fg:#f8f8f2)"
 # error_symbol = "[ ➤ ]($bold fg:#fb4934)"
@@ -100,23 +104,30 @@ continuation_prompt = '▶▶ '
 disabled = false
 format = "[$path](bold fg:#8be9fd)"
 truncate_to_repo = false
-# home_symbol = ""
+home_symbol = ""
 
 [git_branch]
 format = " [  $branch](fg:#9198a1)"
 
 [git_status]
-ahead = '⇡${count}'
-behind = '⇣${count}'
-diverged = '⇕⇡${ahead_count}⇣${behind_count}'
-format = '[[( $all_status$ahead_behind )](fg:#769ff0)]($style)'
+ahead = "⇡${count}"
+behind = "⇣${count}"
+diverged = "⇕⇡${ahead_count}⇣${behind_count}"
+format = "[[( $all_status$ahead_behind )](fg:#769ff0)]($style)"
 style = "bg:#394260"
-
 
 [time]
 disabled = false
-format = '[[  $time ](fg:#a0a9cb )]($style)'
-time_format = "%R"                            # Hour:Minute Format
+format = "[[  $time ](fg:#a0a9cb )]($style)"
+time_format = "%R"  # Hour:Minute Format
+
+# Replace the '❯' symbol in the prompt with '➜'
+[character]  # The name of the module we are configuring is 'character'
+success_symbol = "[➜](bold green)"  # The 'success_symbol' segment is being set to '➜' with the color 'bold green'
+
+# Disable the package module, hiding it from the prompt completely
+[package]
+disabled = false
 
 [deno]
 format = " [deno](italic) [ ](green bold)"
@@ -148,8 +159,8 @@ symbol = " "
 version_format = "${raw}"
 
 [rust]
+format = "via [⚙️ $version](red bold)"  # " rs(italic) $symbol($style)"
 style = "bold bright-red"
-format = " rs(italic) $symbol($style)"
 symbol = " "
 
 [swift]
@@ -224,7 +235,6 @@ style = "bold bright-cyan"
 format = " dart [$symbol]($style)"
 symbol = " "
 
-
 [elixir]
 style = "bold bright-yellow"
 format = " exs [$symbol OTP $otp_version ]($style)"
@@ -266,24 +276,22 @@ format = " nim [$symbol]($style)"
 symbol = "▴▲▴ "
 
 [nix_shell]
-format = '[$symbol nix⎪$state⎪]($style) [$name](italic dimmed white)'
-impure_msg = '[⌽](bold dimmed red)'
-pure_msg = '[⌾](bold dimmed green)'
-style = 'bold italic dimmed blue'
-symbol = ' '
-unknown_msg = '[◌](bold dimmed ellow)'
+format = "[$symbol nix⎪$state⎪]($style) [$name](italic dimmed white)"
+impure_msg = "[⌽](bold dimmed red)"
+pure_msg = "[⌾](bold dimmed green)"
+style = "bold italic dimmed blue"
+symbol = " "
+unknown_msg = "[◌](bold dimmed ellow)"
 
 [spack]
 style = "bold bright-yellow"
 format = " spack [$symbol$environment]($style)"
 symbol = "◇ "
 
-
 [zig]
 style = "bold bright-yellow"
 format = " zig [$symbol]($style)"
 symbol = " "
-
 
 [scala]
 format = " scala [$symbol]($style)"
