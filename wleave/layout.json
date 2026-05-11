@@ -52,7 +52,7 @@
           "$DESKTOP_SESSION": "gnome",
           "shell": "gnome-session-quit --no-prompt"
         },
-        "loginctl terminate-user $USER"
+        "command -v hyprshutdown >/dev/null 2>&1 && hyprshutdown || hyprctl dispatch exit"
       ],
       "text": "Logout",
       "keybind": "e",
@@ -60,7 +60,7 @@
     },
     {
       "label": "shutdown",
-      "action": "systemctl poweroff",
+      "action": "hyprshutdown -p 'systemctl poweroff'",
       "text": "Shutdown",
       "keybind": "s",
       "icon": "/usr/share/wleave/icons/shutdown.svg"
@@ -74,7 +74,7 @@
     },
     {
       "label": "reboot",
-      "action": "systemctl reboot",
+      "action": "hyprshutdown -p 'systemctl reboot'",
       "text": "Reboot",
       "keybind": "r",
       "icon": "/usr/share/wleave/icons/reboot.svg"
