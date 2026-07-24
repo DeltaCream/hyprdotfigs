@@ -2,6 +2,11 @@
   {
     "name": "Weather",
     "type": "weather",
+    "priority": 1,
+    "limit": null,
+    "shortcut": false,
+    "spawn_focus": false,
+    "home": "OnlyHome",
     "args": {
       "location": "manila",
       "update_interval": 60,
@@ -13,40 +18,36 @@
         "name": "Show in Web",
         "exec": "https://www.wttr.in/manila",
         "icon": "sherlock-link",
-        "method": "web_launcher"
+        "method": "web_launcher",
+        "exit": true
       }
-    ],
-    "priority": 1,
-    "home": "OnlyHome",
-    "async": true,
-    "shortcut": false,
-    "spawn_focus": false
+    ]
   },
   {
     "name": "Spotify",
     "type": "music_player",
-    "args": {},
-    "async": true,
     "priority": 1,
-    "home": "OnlyHome",
+    "limit": null,
     "spawn_focus": false,
+    "home": "OnlyHome",
     "binds": [
       {
-        "bind": "Return",
+        "bind": "return",
         "callback": "playpause",
         "exit": false
       },
       {
-        "bind": "control+l",
+        "bind": "ctrl-l",
         "callback": "next",
         "exit": false
       },
       {
-        "bind": "control+h",
+        "bind": "ctrl-h",
         "callback": "previous",
         "exit": false
       }
     ],
+    "args": {},
     "actions": [
       {
         "name": "Skip",
@@ -64,36 +65,44 @@
   },
   {
     "name": "Calculator",
+    "on_return": "copy",
     "type": "calculator",
-    "args": {
-      "capabilities": ["calc.math", "calc.units"]
-    },
     "priority": 1,
-    "on_return": "copy"
+    "limit": null,
+    "args": {
+      "capabilities": [
+        "calc.math",
+        "calc.units"
+      ]
+    }
   },
   {
     "name": "App Launcher",
     "alias": "app",
     "type": "apps",
-    "args": {},
     "priority": 3,
-    "home": "Home"
+    "limit": null,
+    "home": "Home",
+    "args": {}
   },
   {
     "name": "Web Search",
-    "display_name": "Google Search",
-    "tag_start": "{keyword}",
     "alias": "gg",
     "type": "web",
+    "priority": 100,
+    "limit": null,
     "args": {
       "search_engine": "google",
-      "icon": "google"
-    },
-    "priority": 100
+      "icon": "google",
+      "display_name": "Google Search"
+    }
   },
   {
     "name": "Clipboard",
     "type": "clipboard",
+    "priority": 1,
+    "limit": null,
+    "home": "Home",
     "args": {
       "capabilities": [
         "url",
@@ -105,14 +114,14 @@
         "calc.weights",
         "calc.temperatures"
       ]
-    },
-    "priority": 1,
-    "home": "Home"
+    }
   },
   {
     "name": "Example Command",
     "alias": "ex",
     "type": "commands",
+    "priority": 5,
+    "limit": null,
     "args": {
       "commands": {
         "command name": {
@@ -131,17 +140,16 @@
           "tag_end": "{keyword}"
         }
       }
-    },
-    "priority": 5
+    }
   },
   {
     "name": "Emoji Picker",
+    "alias": "emoji",
     "type": "emoji",
+    "priority": 4,
+    "limit": null,
     "args": {
       "default_skin_tone": "Simpsons"
-    },
-    "priority": 4,
-    "home": "Search",
-    "alias": "emoji"
+    }
   }
 ]
