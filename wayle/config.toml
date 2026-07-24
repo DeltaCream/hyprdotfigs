@@ -13,6 +13,8 @@ inset-ends = 0.0
 padding = 0.35
 padding-ends = 0.5
 module-gap = 0.5
+exclusive = true
+layer = "top"
 location = "top"
 bg = "bg-surface"
 background-opacity = 100
@@ -60,7 +62,7 @@ right = [
   # "bluetooth",
   "network",
   # "microphone",
-  # "volume",
+  "volume",
   "hyprsunset",
   "dashboard",
 ]
@@ -152,6 +154,29 @@ middle-click = ""
 scroll-up = ""
 scroll-down = ""
 
+[modules.brightness]
+level-icons = [
+  "ld-sun-dim-symbolic",
+  "ld-sun-medium-symbolic",
+  "ld-sun-symbolic",
+]
+border-show = false
+border-color = "yellow"
+icon-show = true
+icon-color = "auto"
+icon-bg-color = "yellow"
+label-show = true
+label-color = "yellow"
+format = "{{ percent }}%"
+label-max-length = 0
+button-bg-color = "bg-surface-elevated"
+left-click = "dropdown:brightness"
+right-click = ""
+middle-click = ""
+scroll-up = ""
+scroll-down = ""
+thresholds = []
+
 [modules.cava]
 bars = 20
 framerate = 144
@@ -225,15 +250,21 @@ border-show = false
 border-color = "yellow"
 icon-color = "auto"
 icon-bg-color = "yellow"
-right-click = ""
-middle-click = ""
+# right-click = ""
+right-click = "wleave"
+# middle-click = ""
+middle-click = "wlogout"
 scroll-up = ""
 scroll-down = ""
 left-click = "dropdown:dashboard"
 dropdown-lock-command = "loginctl lock-session"
-dropdown-logout-command = "loginctl terminate-session $XDG_SESSION_ID"
-dropdown-reboot-command = "systemctl reboot"
-dropdown-poweroff-command = "wleave"  # "systemctl poweroff"
+# dropdown-logout-command = "loginctl terminate-session $XDG_SESSION_ID"
+dropdown-logout-command = "hyprshutdown >/dev/null 2>&1 && hyprshutdown || hyprctl dispatch exit"
+# dropdown-reboot-command = "systemctl reboot"
+dropdown-reboot-command = "hyprshutdown -p 'systemctl reboot'"
+# dropdown-poweroff-command = "systemctl poweroff"
+# dropdown-poweroff-command = "wleave"
+dropdown-poweroff-command = "hyprshutdown -p 'systemctl poweroff'"
 
 [modules.hyprland-workspaces]
 min-workspace-count = 0
@@ -438,7 +469,42 @@ middle-click = ""
 scroll-up = ""
 scroll-down = ""
 
-[modules.notification]
+[modules.niri-workspaces]
+min-workspace-count = 0
+monitor-specific = true
+hide-trailing-empty = true
+display-mode = "label"
+label-strategy = "name-or-index"
+urgent-show = true
+urgent-mode = "workspace"
+active-indicator = "background"
+divider = " "
+app-icons-show = false
+app-icons-dedupe = true
+app-icons-fallback = "ld-app-window-symbolic"
+app-icons-empty = "tb-minus-symbolic"
+icon-gap = 0.3
+workspace-padding = 0.5
+icon-size = 1.0
+label-size = 1.0
+workspace-ignore = []
+active-color = "accent"
+occupied-color = "fg-muted"
+empty-color = "fg-subtle"
+container-bg-color = "bg-surface-elevated"
+border-show = false
+border-color = "border-default"
+left-click = "focus:this"
+middle-click = ""
+right-click = ""
+scroll-up = "focus:previous"
+scroll-down = "focus:next"
+
+[modules.niri-workspaces.workspace-map]
+
+[modules.niri-workspaces.app-icon-map]
+
+[modules.notifications]
 icon-name = "ld-bell-symbolic"
 icon-unread = "ld-bell-dot-symbolic"
 icon-dnd = "ld-bell-off-symbolic"
@@ -467,6 +533,7 @@ popup-margin-x = 0.0
 popup-margin-y = 0.0
 popup-gap = 8.0
 popup-monitor = "primary"
+popup-layer = "overlay"
 popup-close-behavior = "dismiss"
 popup-shadow = true
 popup-urgency-bar = "low"
@@ -632,6 +699,7 @@ duration = 2500
 monitor = "primary"
 margin = 150.0
 border = true
+layer = "overlay"
 
 [wallpaper]
 engine-enabled = true
