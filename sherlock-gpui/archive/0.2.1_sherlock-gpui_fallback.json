@@ -1,0 +1,61 @@
+[
+  {
+    "name": "Weather",
+    "type": "weather",
+    "priority": 1,
+    "shortcut": false,
+    "spawn_focus": false,
+    "home": "OnlyHome",
+    "args": {
+      "location": "manila",
+      "update_interval": 60,
+      "icon_theme": "Sherlock",
+      "show_datetime": true
+    },
+    "actions": [
+      {
+        "name": "Show in Web",
+        "exec": "https://www.wttr.in/manila",
+        "icon": "sherlock-link",
+        "method": "web_launcher",
+        "exit": true
+      }
+    ]
+  },
+  {
+    "name": "Calculator",
+    "on_return": "copy",
+    "type": "calculator",
+    "priority": 1,
+    "args": {
+      "capabilities": ["calc.math", "calc.units"]
+    }
+  },
+  {
+    "name": "Clipboard",
+    "type": "clipboard",
+    "priority": 1,
+    "home": "Home",
+    "args": {
+      "capabilities": [
+        "url",
+        "colors.hex",
+        "colors.rgb",
+        "colors.hsl",
+        "calc.math",
+        "calc.lengths",
+        "calc.weights",
+        "calc.temperatures"
+      ]
+    }
+  },
+  {
+    "name": "Emoji Picker",
+    "alias": "emoji",
+    "type": "emoji",
+    "priority": 4,
+    "args": {
+      "default_skin_tone": "Simpsons"
+    }
+  }
+]
