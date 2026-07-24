@@ -1,0 +1,60 @@
+
+
+[colors]
+# Regular colors
+background = "#010408"
+black =   "#010408"
+blue =    "#337084"
+cyan =    "#316A8A"
+foreground = "#C0CED7"
+green =   "#235867"
+magenta = "#377C51"
+red =     "#1F493E"
+white =   "#92AFBF"
+yellow =  "#2E7159"
+
+# Cursor
+cursor =    "#C0CED7"
+vi-cursor = "#316A8A"
+
+# Navigation
+tabs =        "#5B7786"  # Inactive tab text and border color
+tabs-active = "#C0CED7"  # Active tab text color
+bar =   "#010408"
+split = "#5B7786"
+
+# Search
+search-match-background =         "#316A8A"
+search-match-foreground =         "#010408"
+search-focused-match-background = "#2E7159"
+search-focused-match-foreground = "#010408"
+
+# Hints
+hint-foreground = "#010408"
+hint-background = "#2E7159"
+
+# Selection`
+selection-foreground = "#010408"
+selection-background = "#316A8A"
+
+# Dim colors
+dim-black =      "#010408"
+dim-blue =       "#337084"
+dim-cyan =       "#316A8A"
+dim-foreground = "#92AFBF"
+dim-green =      "#235867"
+dim-magenta =    "#377C51"
+dim-red =        "#1F493E"
+dim-white =      "#92AFBF"
+dim-yellow =     "#2E7159"
+
+# Light colors
+light-black =      "#5B7786"
+light-blue =       "#337084"
+light-cyan =       "#316A8A"
+light-foreground = "#C0CED7"
+light-green =      "#235867"
+light-magenta =    "#377C51"
+light-red =        "#1F493E"
+light-white =      "#C0CED7"
+light-yellow =     "#2E7159"
