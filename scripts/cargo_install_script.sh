@@ -12,12 +12,19 @@ cargo install --locked typst-cli
 cargo install du-dust # du but for Rust; du + Rust = dust
 cargo install bat # Rust version of cat; cat with wings
 cargo install ripgrep # Rust version of grep
-cargo install fd # fast, pretty drop-in replacement for find
+cargo install fd-find # fast, pretty drop-in replacement for find
 cargo install eza # drop-in replacement for ls; a well-maintained fork of exa, which is a fork of ls
 cargo install zoxide # a smarter cd command for your terminal
 cargo install dua # interactive disk use analyzer
 cargo install skim # fuzzy finder for Rust
 cargo install rust_tree # Rust implementation of tree for showing the file tree of a given directory
+cargo install procs # view system processes in a more organized manner
+# man command alternatives
+cargo install tlrc # official tldr client written in Rust
+cargo install tealdeer # very fast implementation of tldr in Rust
+cargo install broot # interactive tree viewer
+cargo install lsd # built-in icons and vibrant colors for ls
+cargo install bottom # system monitoring tool that is an alternative to top
 
 # No Boilerplate's recommendations
 # https://www.youtube.com/watch?v=dFkGNe4oaKk
@@ -67,3 +74,8 @@ cargo install espanso # cross-platform text expander
 cargo install alacritty
 cargo install weathr # terminal weather app with ascii animation
 cargo install wallust # wallpaper color theme manager
+cargo install wallrust
+cargo install xplr # alternative to nnn; terminal file explorer similar to yazi
+
+# Clipboard
+cargo install clipvault

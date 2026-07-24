@@ -1038,7 +1038,8 @@ sudo rm -rf /tmp/wayle
 
 # Install bundled icons (automatic on first launch)
 wayle icons setup
-wayle panel start
+# wayle panel start
+wayle panel restart # or do this instead if you already have wayle running
 
 # Install sherlock-gpui
 cd /tmp

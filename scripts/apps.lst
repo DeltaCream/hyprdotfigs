@@ -128,6 +128,8 @@ webcord
 anki                                                   # a smart spaced repetition flashcard program
 openrgb                                                # rgb lighting control
 opentoonz                                              # 2D animation software, used by Studio Ghibli
+snapshot                                               # GNOME camera application
+bazaar                                                 # flatpak app store
 
 # --------------------------------------------------- // Music
 cava                                                   # audio visualizer
