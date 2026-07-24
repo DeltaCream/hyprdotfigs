@@ -1,4 +1,4 @@
-#!/usr/bin/env/bash
+#!/usr/bin/env bash
 # Credits to mahaveergurjar: https://github.com/mahaveergurjar/Hyprlock-Dots/blob/main/.config/hyprlock/scripts/weather.sh
 cache_file="$HOME/.cache/wttr_cache.txt"
 
