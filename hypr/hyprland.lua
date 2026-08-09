@@ -103,7 +103,7 @@ hl.env("ELECTRON_OZONE_PLATFORM_HINT", "auto")
 hl.env("NVD_BACKEND", "direct")
 
 -- Toolkit Backend Environment Variables
-hl.env("GDK_BACKEND", "wayland", "x11", "*") -- GTK: use Wayland if available, else X11, else anything
+hl.env("GDK_BACKEND", "wayland,x11,*")       -- GTK: use Wayland if available, else X11, else anything
 hl.env("QT_QPA_PLATFORM", "wayland;xcb")     -- Qt: use Wayland if available, else X11
 
 -- XDG Specifications
@@ -312,8 +312,10 @@ hl.device({
 -- Added as it fixes the "double cursor problem"
 -- Credits to mark-boute: https://github.com/hyprwm/Hyprland/issues/3973#issuecomment-3669919251
 -- Explanation: https://wiki.hypr.land/Configuring/Variables/#cursor
-hl.cursor({
-    no_hardware_cursors = 0,
+hl.config({
+    cursor = {
+        no_hardware_cursors = 0,
+    },
 })
 
 ---------------------
@@ -337,6 +339,7 @@ hl.bind(mainMod .. " + Y", hl.dsp.exec_cmd(terminal .. " -e yazi"))
 
 -- [Miscellaneous]
 hl.bind(mainMod .. " + ALT + W", hl.dsp.exec_cmd(terminal .. " -e weathr"))
+hl.bind(mainMod .. " + L", hl.dsp.exec_cmd("hyprlock"))
 
 -- [Text Editor]
 hl.bind(mainMod .. " + ALT + SHIFT + Z", hl.dsp.exec_cmd(textEditor))
@@ -344,7 +347,6 @@ hl.bind(mainMod .. " + SHIFT + E", hl.dsp.exec_cmd(textEditor))
 
 -- [Menu] (sherlock)
 hl.bind(mainMod .. " + space", hl.dsp.exec_cmd(menu))                    -- [Primary] Menu
-hl.bind(mainMod .. " + R", hl.dsp.exec_cmd(menu))                        -- [Secondary] Menu
 hl.bind("ALT + space", hl.dsp.exec_cmd(menu))                            -- [Tertiary] Menu
 hl.bind(mainMod .. " + period", hl.dsp.exec_cmd(menu .. " --sub-menu emoji")) -- Emoji Picker (sherlock)
 -- hl.bind(mainMod .. " + period", hl.dsp.exec_cmd("zlaunch show --modes emojis")) -- Emoji Picker (zlaunch)
@@ -401,7 +403,7 @@ hl.bind("CTRL + ALT + L", hl.dsp.exec_cmd('wlogout'))
 
 hl.bind(mainMod .. " + SHIFT + V", hl.dsp.window.float({ action = "toggle" }))
 hl.bind(mainMod .. " + V", hl.dsp.window.float({ action = "toggle" }))
-hl.bind(mainMod .. " + R", hl.dsp.exec_cmd(menu))
+hl.bind(mainMod .. " + R", hl.dsp.exec_cmd(menu))           -- [Secondary] Menu
 hl.bind(mainMod .. " + P", hl.dsp.window.pseudo())          -- dwindle
 hl.bind(mainMod .. " + J", hl.dsp.layout("togglesplit"))    -- dwindle only
 
@@ -521,7 +523,7 @@ hl.window_rule({
     no_focus         = true,
     no_anim          = true,
     no_blur          = true,
-    max_size         = 1,
+    max_size         = "1 1",
     opacity          = 0.0,
 
 })
@@ -546,7 +548,7 @@ hl.window_rule({
 })
 
 hl.window_rule({
-    name  = "show-me-the-key",
+    name  = "show-me-the-key-gtk",
     match = {
         class = "^(showmethekey-gtk)$",
         float = true,
