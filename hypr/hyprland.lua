@@ -341,6 +341,7 @@ hl.bind(mainMod .. " + Y", hl.dsp.exec_cmd(terminal .. " -e yazi"))
 -- [Miscellaneous]
 hl.bind(mainMod .. " + ALT + W", hl.dsp.exec_cmd(terminal .. " -e weathr"))
 hl.bind(mainMod .. " + L", hl.dsp.exec_cmd("hyprlock"))
+hl.bind(mainMod .. " + F", hl.dsp.window.fullscreen({ action = "toggle" }))
 
 -- [Text Editor]
 hl.bind(mainMod .. " + ALT + SHIFT + Z", hl.dsp.exec_cmd(textEditor))
@@ -357,7 +358,7 @@ hl.bind("ALT + Z", hl.dsp.exec_cmd("zlaunch toggle"))
 hl.bind(mainMod .. " + D", hl.dsp.exec_cmd("rofi -show drun"))       -- custom for rofi-wayland
 hl.bind(mainMod .. " + W", hl.dsp.exec_cmd("rofi -show window"))     -- custom for rofi-wayland
 hl.bind(mainMod .. " + T", hl.dsp.exec_cmd("rofi-theme-selector"))
-hl.bind(mainMod .. " + F", hl.dsp.exec_cmd("rofi -show filebrowser"))
+-- hl.bind(mainMod .. " + F", hl.dsp.exec_cmd("rofi -show filebrowser"))
 
 -- [Discord]
 hl.bind(mainMod .. " + SHIFT + D", hl.dsp.exec_cmd("equibop")) -- Equibop
