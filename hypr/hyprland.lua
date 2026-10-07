@@ -401,7 +401,7 @@ hl.bind(mainMod .. " + ALT + S", hl.dsp.exec_cmd(statusBar .. " panel settings")
 --     hl.dsp.exec_cmd(
 --         'wlogout -b 6 -c 0 -r 0 -m 0 --layout "$HOME/.config/wlogout/layout" --css "$HOME/.config/wlogout/style.css" --protocol layer-shell'))
 hl.bind("CTRL + ALT + DELETE", hl.dsp.exec_cmd('wleave'))
-hl.bind("CTRL + ALT + L", hl.dsp.exec_cmd('wlogout'))
+hl.bind("CTRL + ALT + L", hl.dsp.exec_cmd('wlogout -b 6 -c 0 -r 0 -m 0'))
 
 hl.bind(mainMod .. " + SHIFT + V", hl.dsp.window.float({ action = "toggle" }))
 hl.bind(mainMod .. " + V", hl.dsp.window.float({ action = "toggle" }))
